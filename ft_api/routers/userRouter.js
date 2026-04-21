@@ -21,9 +21,14 @@ router.post("/", async (req, res) => {
           message: "Please try again",
         });
   } catch (error) {
+    let msg = error.message;
+    if (msg.includes("E11000 duplicate key error collection")) {
+      msg =
+        "Another user have used this email, try to login or use different email to signup";
+    }
     res.json({
       status: "error",
-      message: error.message,
+      message: msg,
     });
   }
 });
