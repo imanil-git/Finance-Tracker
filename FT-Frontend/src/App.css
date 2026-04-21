@@ -5,5 +5,5 @@
 }
 
 .main {
-    min-height: calc(100vh - 550px);
+    min-height: calc(100vh - 150px)
 }
