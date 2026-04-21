@@ -22,3 +22,23 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Yarn 4 (Berry)
+
+# Ignore everything in .yarn
+.yarn/*
+
+# Keep required Yarn files
+!.yarn/releases
+!.yarn/plugins
+!.yarn/sdks
+!.yarn/versions
+
+# Ignore cache & temp
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.yarn/install-state.gz
+
+# PnP files (optional, but usually ignored)
+.pnp.*
