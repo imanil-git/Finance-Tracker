@@ -1,6 +1,7 @@
 import express from "express";
 const app = express();
 const PORT = process.env.PORT || 8000;
+import cors from "cors";
 
 //connect DB
 import { conMongoDB } from "./config/mongodbConfig.js";
@@ -8,6 +9,7 @@ conMongoDB();
 
 // Middleware
 app.use(express.json());
+app.use(cors());
 
 // API endpoints
 import userRouter from "./routers/userRouter.js";

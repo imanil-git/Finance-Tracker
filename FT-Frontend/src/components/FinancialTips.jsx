@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { GrMoney } from "react-icons/gr";
 
 const financialTips = [
   {
@@ -81,9 +82,16 @@ const FinancialTips = () => {
   });
   const { tip, quote, author, meaning } = showQuote;
   return (
-    <div className="d-flex flex-column justify-content-center" style={{
-      height: "100%",
-    }}>
+    <div
+      className="d-flex flex-column justify-content-center"
+      style={{
+        height: "100%",
+      }}
+    >
+      <div className="mb-5">
+        <GrMoney className="text-success" style={{ fontSize: "10rem" }} />
+        <div>Watch your Money Grow!</div>
+      </div>
       <h4>{tip}</h4>
       <div className="fw-bolder mb-4">
         "{quote}" - {author}
