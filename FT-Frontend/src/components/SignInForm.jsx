@@ -46,7 +46,7 @@ export const SignInForm = () => {
   };
   return (
     <div className="border rounded p-4">
-      <h4 className="mb-5 text-center">Sign up now!</h4>
+      <h4 className="mb-5 text-center">Sign In now!</h4>
       <Form onSubmit={handleOnSubmit}>
         {fields.map((input) => (
           <CustomInput key={input.name} {...input} onChange={handleOnChange} />
