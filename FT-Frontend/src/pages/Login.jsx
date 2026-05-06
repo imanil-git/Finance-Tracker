@@ -15,7 +15,7 @@ const Login = () => {
         </Col>
         <Col md={6}>
           <div
-            className="d-flex flex-column justify-content-center fs-1"
+            className="d-flex flex-column justify-content-center fs-1 fw-bold"
             style={{
               height: "100%",
             }}

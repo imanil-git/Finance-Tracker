@@ -4,9 +4,16 @@ import { CustomInput } from "./CustomInput";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import { NewPostUser } from "../../helpers/axiosHelper";
+import useForm from "../hooks/useForm";
+
+const initialState = {
+  email: "",
+  password: "",
+};
 
 export const SignInForm = () => {
-  const [form, setForm] = useState({});
+    const {form, setForm, handleOnChange} = useForm(initialState)
+//   const [form, setForm] = useState({});
   const fields = [
     {
       label: "Email",
@@ -24,14 +31,14 @@ export const SignInForm = () => {
     },
   ];
 
-  const handleOnChange = (e) => {
-    const { name, value } = e.target;
-    // console.log(name, value);
-    setForm({
-      ...form,
-      [name]: value,
-    });
-  };
+//   const handleOnChange = (e) => {
+//     const { name, value } = e.target;
+//     // console.log(name, value);
+//     setForm({
+//       ...form,
+//       [name]: value,
+//     });
+//   };
 
   const handleOnSubmit = async (e) => {
     e.preventDefault();
@@ -39,7 +46,7 @@ export const SignInForm = () => {
   };
   return (
     <div className="border rounded p-4">
-      <h4 className="mb-5 text-center">Sign up now!</h4>
+      <h4 className="mb-5 text-center">Sign In now!</h4>
       <Form onSubmit={handleOnSubmit}>
         {fields.map((input) => (
           <CustomInput key={input.name} {...input} onChange={handleOnChange} />
