@@ -3,7 +3,7 @@ import Form from "react-bootstrap/Form";
 import { CustomInput } from "./CustomInput";
 import { useState } from "react";
 import { toast } from "react-toastify";
-import { NewPostUser } from "../../helpers/axiosHelper";
+import { loginUser, NewPostUser } from "../../helpers/axiosHelper";
 import useForm from "../hooks/useForm";
 
 const initialState = {
@@ -12,8 +12,8 @@ const initialState = {
 };
 
 export const SignInForm = () => {
-    const {form, setForm, handleOnChange} = useForm(initialState)
-//   const [form, setForm] = useState({});
+  const { form, setForm, handleOnChange } = useForm(initialState);
+  //   const [form, setForm] = useState({});
   const fields = [
     {
       label: "Email",
@@ -31,18 +31,30 @@ export const SignInForm = () => {
     },
   ];
 
-//   const handleOnChange = (e) => {
-//     const { name, value } = e.target;
-//     // console.log(name, value);
-//     setForm({
-//       ...form,
-//       [name]: value,
-//     });
-//   };
+  //   const handleOnChange = (e) => {
+  //     const { name, value } = e.target;
+  //     // console.log(name, value);
+  //     setForm({
+  //       ...form,
+  //       [name]: value,
+  //     });
+  //   };
 
   const handleOnSubmit = async (e) => {
     e.preventDefault();
+
     console.log(form);
+
+    const pendingResp = loginUser(form);
+    toast.promise(pendingResp, {
+      pending: "Please wait ....",
+
+    });
+
+    const { status, message, user, accessJWT } = await pendingResp;
+
+    toast[status](message);
+    console.log(user, accessJWT);
   };
   return (
     <div className="border rounded p-4">

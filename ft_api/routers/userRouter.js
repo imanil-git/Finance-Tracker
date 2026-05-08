@@ -54,7 +54,7 @@ router.post("/login", async (req, res, next) => {
 
           user.password = undefined;
           res.json({
-            status: "status",
+            status: "success",
             message: "Loged in successfully",
             user,
             accessJWT,
