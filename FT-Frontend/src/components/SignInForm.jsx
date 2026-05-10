@@ -1,10 +1,12 @@
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { CustomInput } from "./CustomInput";
-import { useState } from "react";
 import { toast } from "react-toastify";
 import { loginUser, NewPostUser } from "../../helpers/axiosHelper";
 import useForm from "../hooks/useForm";
+import { useUser } from "../context/UserContext";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const initialState = {
   email: "",
@@ -12,7 +14,15 @@ const initialState = {
 };
 
 export const SignInForm = () => {
+  const navigate = useNavigate();
+
+  const { user, setUser } = useUser();
   const { form, setForm, handleOnChange } = useForm(initialState);
+
+  useEffect(() => {
+    user?._id && navigate("/dashboard");
+  }, [user?._id, navigate]);
+
   //   const [form, setForm] = useState({});
   const fields = [
     {
@@ -48,13 +58,13 @@ export const SignInForm = () => {
     const pendingResp = loginUser(form);
     toast.promise(pendingResp, {
       pending: "Please wait ....",
-
     });
 
     const { status, message, user, accessJWT } = await pendingResp;
 
     toast[status](message);
     console.log(user, accessJWT);
+    setUser(user);
   };
   return (
     <div className="border rounded p-4">
