@@ -25,7 +25,7 @@ export const Header = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
-            {user._id ? (
+            {user?._id ? (
               <>
                 <Link className="nav-link" to="/dashboard">
                   <RiDashboard3Fill />
