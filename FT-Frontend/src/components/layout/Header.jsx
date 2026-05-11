@@ -7,8 +7,17 @@ import { GrLogin } from "react-icons/gr";
 import { IoCreate } from "react-icons/io5";
 import { RiDashboard3Fill } from "react-icons/ri";
 import { TbTransactionDollar } from "react-icons/tb";
+import { useUser } from "../../context/UserContext";
 
 export const Header = () => {
+  const { setUser } = useUser;
+  const handleOnLogOut = () => {
+    //1. On Logout click delete `accessJWT` token from the `localStorage`
+    localStorage.removeItem("accessJWT");
+    //2. Reset user object from the this.state
+    setUser({});
+  };
+
   return (
     <Navbar expand="lg" variant="dark" className="bg-body-dark">
       <Container>
@@ -17,19 +26,24 @@ export const Header = () => {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
             <Link className="nav-link" to="/signup">
-              <IoCreate />Sign UP
+              <IoCreate />
+              Sign UP
             </Link>
             <Link className="nav-link" to="/">
-              <GrLogin />Login
+              <GrLogin />
+              Login
             </Link>
             <Link className="nav-link" to="/dashboard">
-              <RiDashboard3Fill />Dashboard
+              <RiDashboard3Fill />
+              Dashboard
             </Link>
             <Link className="nav-link" to="/transaction">
-              <TbTransactionDollar />Transaction
+              <TbTransactionDollar />
+              Transaction
             </Link>
-            <Link className="nav-link" to="/">
-              <IoMdLogOut />Logout
+            <Link onClick={handleOnLogOut} className="nav-link" to="/">
+              <IoMdLogOut />
+              Logout
             </Link>
           </Nav>
         </Navbar.Collapse>
