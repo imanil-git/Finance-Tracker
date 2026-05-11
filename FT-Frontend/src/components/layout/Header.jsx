@@ -10,7 +10,7 @@ import { TbTransactionDollar } from "react-icons/tb";
 import { useUser } from "../../context/UserContext";
 
 export const Header = () => {
-  const { setUser } = useUser;
+  const { user, setUser } = useUser();
   const handleOnLogOut = () => {
     //1. On Logout click delete `accessJWT` token from the `localStorage`
     localStorage.removeItem("accessJWT");
@@ -25,26 +25,33 @@ export const Header = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
-            <Link className="nav-link" to="/signup">
-              <IoCreate />
-              Sign UP
-            </Link>
-            <Link className="nav-link" to="/">
-              <GrLogin />
-              Login
-            </Link>
-            <Link className="nav-link" to="/dashboard">
-              <RiDashboard3Fill />
-              Dashboard
-            </Link>
-            <Link className="nav-link" to="/transaction">
-              <TbTransactionDollar />
-              Transaction
-            </Link>
-            <Link onClick={handleOnLogOut} className="nav-link" to="/">
-              <IoMdLogOut />
-              Logout
-            </Link>
+            {user._id ? (
+              <>
+                <Link className="nav-link" to="/dashboard">
+                  <RiDashboard3Fill />
+                  Dashboard
+                </Link>
+                <Link className="nav-link" to="/transaction">
+                  <TbTransactionDollar />
+                  Transaction
+                </Link>
+                <Link onClick={handleOnLogOut} className="nav-link" to="/">
+                  <IoMdLogOut />
+                  Logout
+                </Link>
+              </>
+            ) : (
+              <>
+                <Link className="nav-link" to="/signup">
+                  <IoCreate />
+                  Sign UP
+                </Link>
+                <Link className="nav-link" to="/">
+                  <GrLogin />
+                  Login
+                </Link>
+              </>
+            )}
           </Nav>
         </Navbar.Collapse>
       </Container>
