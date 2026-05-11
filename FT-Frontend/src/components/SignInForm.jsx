@@ -65,6 +65,7 @@ export const SignInForm = () => {
     toast[status](message);
     console.log(user, accessJWT);
     setUser(user);
+    localStorage.setItem("accessJWT", accessJWT);
   };
   return (
     <div className="border rounded p-4">
