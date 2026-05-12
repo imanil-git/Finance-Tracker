@@ -35,5 +35,5 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFAcy5jb20iLCJp
     "type": "income",
   "title": "Salary",
   "amount": "55",
-  "tDate": "23-04-2026"
+  "tDate": "2026-04-23"
 }
