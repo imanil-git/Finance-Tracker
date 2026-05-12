@@ -3,7 +3,7 @@
 #### User
 #### Get User
 GET http://localhost:8000/api/v1/users
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFAcy5jb20iLCJpYXQiOjE3Nzg0NzQwNzAsImV4cCI6MTc3ODQ3NDEzMH0.YtM4040w597qaJpsU6xobvJmI3yK-CUZGngFpUu109E
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFAcy5jb20iLCJpYXQiOjE3Nzg1OTYzOTAsImV4cCI6MTc3ODY4Mjc5MH0.CrI9jr-9QrwVVuKQaNbvlOZxQCSV9thTtxXCiArFms8
 
 #### Post User
 POST http://localhost:8000/api/v1/users
@@ -24,4 +24,16 @@ Content-Type: application/json
     "password": "123"
 }
 
-#### Transcations
+#### Transcations: all private routers
+
+### Post new transaction
+POST http://localhost:8000/api/v1/transactions
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFAcy5jb20iLCJpYXQiOjE3Nzg1OTYzOTAsImV4cCI6MTc3ODY4Mjc5MH0.CrI9jr-9QrwVVuKQaNbvlOZxQCSV9thTtxXCiArFms8
+
+{
+    "type": "income",
+  "title": "Salary",
+  "amount": "55",
+  "tDate": "23-04-2026"
+}
