@@ -29,7 +29,7 @@ Content-Type: application/json
 ### Post new transaction
 POST http://localhost:8000/api/v1/transactions
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFAcy5jb20iLCJpYXQiOjE3Nzg1OTYzOTAsImV4cCI6MTc3ODY4Mjc5MH0.CrI9jr-9QrwVVuKQaNbvlOZxQCSV9thTtxXCiArFms8
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFAcy5jb20iLCJpYXQiOjE3Nzg4MjY1MTUsImV4cCI6MTc3ODkxMjkxNX0.w2uZkmFRgD9roCps-sofIwioj15UEn24cTBc33yL3s8
 
 {
     "type": "income",
@@ -40,4 +40,4 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFAcy5jb20iLCJp
 
 ### Post new transaction
 GET http://localhost:8000/api/v1/transactions
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFAcy5jb20iLCJpYXQiOjE3Nzg3NzQyOTYsImV4cCI6MTc3ODg2MDY5Nn0.7GVQBJYbG4wv7k2fJdxjOteDiiFKxiTRNvNIMt5knSo
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFAcy5jb20iLCJpYXQiOjE3Nzg4MjY1MTUsImV4cCI6MTc3ODkxMjkxNX0.w2uZkmFRgD9roCps-sofIwioj15UEn24cTBc33yL3s8

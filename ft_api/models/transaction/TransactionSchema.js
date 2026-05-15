@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const TransactionSchema = mongoose.Schema(
   {
-    title: {
+    type: {
       type: String,
       required: true,
     },
