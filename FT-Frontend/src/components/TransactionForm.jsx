@@ -3,20 +3,30 @@ import useForm from "../hooks/useForm";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { CustomInput } from "./CustomInput";
+import { NewPostTransaction } from "../../helpers/axiosHelper";
+import { toast } from "react-toastify";
 
 const initialState = {
   type: "",
   title: "",
   amount: "",
-  tdate: "",
+  tDate: "",
 };
 
 export const TransactionForm = () => {
   const { form, setForm, handleOnChange } = useForm(initialState);
 
-  const handleOnSubmit = (e) => {
+  const handleOnSubmit = async(e) => {
     e.preventDefault();
     console.log(form);
+    const pending = NewPostTransaction(form);
+    toast.promise(pending, {
+      pending: "Please Wait..."
+    })
+    const {status, message} = await pending
+    toast[status](message);
+
+    //TODO: call the function to fetch all transcation
   };
 
   const fields = [
@@ -40,8 +50,8 @@ export const TransactionForm = () => {
       label: "Transaction Date",
       type: "date",
       required: true,
-      name: "tdate",
-      value: form.tdate,
+      name: "tDate",
+      value: form.tDate,
     },
   ];
   return (

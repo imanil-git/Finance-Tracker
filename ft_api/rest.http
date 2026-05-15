@@ -37,3 +37,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFAcy5jb20iLCJp
   "amount": "55",
   "tDate": "2026-04-23"
 }
+
+### Post new transaction
+GET http://localhost:8000/api/v1/transactions
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFAcy5jb20iLCJpYXQiOjE3Nzg3NzQyOTYsImV4cCI6MTc3ODg2MDY5Nn0.7GVQBJYbG4wv7k2fJdxjOteDiiFKxiTRNvNIMt5knSo
