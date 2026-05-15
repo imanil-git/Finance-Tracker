@@ -5,6 +5,7 @@ import Form from "react-bootstrap/Form";
 import { CustomInput } from "./CustomInput";
 import { NewPostTransaction } from "../../helpers/axiosHelper";
 import { toast } from "react-toastify";
+import { useUser } from "../context/UserContext";
 
 const initialState = {
   type: "",
@@ -15,17 +16,21 @@ const initialState = {
 
 export const TransactionForm = () => {
   const { form, setForm, handleOnChange } = useForm(initialState);
+  const { getTransactions } = useUser();
 
-  const handleOnSubmit = async(e) => {
+  const handleOnSubmit = async (e) => {
     e.preventDefault();
     console.log(form);
     const pending = NewPostTransaction(form);
     toast.promise(pending, {
-      pending: "Please Wait..."
-    })
-    const {status, message} = await pending
+      pending: "Please Wait...",
+    });
+    const { status, message } = await pending;
     toast[status](message);
-
+    if (status === "success") {
+      setForm(initialState);
+      getTransactions();
+    }
     //TODO: call the function to fetch all transcation
   };
 
