@@ -8,9 +8,12 @@ import { FaCirclePlus } from "react-icons/fa6";
 export const TransactionTable = () => {
   const [displayTran, setDisplayTran] = useState([]);
   const { transactions, toogleModal } = useUser();
+  const [idsToDelete, setIdsToDelete] = useState([]);
+
   useEffect(() => {
     setDisplayTran(transactions);
   }, [transactions]);
+
   const handleOnSearch = (e) => {
     const { value } = e.target;
 
@@ -20,10 +23,30 @@ export const TransactionTable = () => {
 
     setDisplayTran(filteredArg);
   };
-  console.log(transactions);
+
   const balance = displayTran.reduce((acc, t) => {
     return t.type === "income" ? acc + t.amount : acc - t.amount;
   }, 0);
+
+  const handleOnSelect = (e) => {
+    const { checked, value } = e.target;
+    console.log(checked, value);
+    if (value === "all") {
+      checked
+        ? setIdsToDelete(displayTran.map((item) => item._id))
+        : setIdsToDelete([]);
+
+      return;
+    }
+
+    if (checked) {
+      setIdsToDelete([...idsToDelete, value]);
+    } else {
+      setIdsToDelete(idsToDelete.filter((id) => id !== value));
+    }
+    return;
+  };
+  console.log(idsToDelete);
   return (
     <>
       <p className="fs-4 fw-bold">{displayTran.length} transaction(s) found!</p>
@@ -36,6 +59,14 @@ export const TransactionTable = () => {
             <FaCirclePlus /> Add New Transactions
           </Button>
         </div>
+      </div>
+      <div>
+        <Form.Check
+          label="Select All"
+          value="all"
+          onChange={handleOnSelect}
+          checked={displayTran.length === idsToDelete.length}
+        />
       </div>
       <Table striped hover>
         <thead>
@@ -52,7 +83,14 @@ export const TransactionTable = () => {
             displayTran.map((t, i) => (
               <tr key={t._id}>
                 <td>{i + 1}</td>
-                <td>{t.createdAt.slice(0, 10)}</td>
+                <td>
+                  <Form.Check
+                    label={t.createdAt.slice(0, 10)}
+                    value={t._id}
+                    onChange={handleOnSelect}
+                    checked={idsToDelete.includes(t._id)}
+                  />
+                </td>
                 <td>{t.title}</td>
                 {t.type === "expenses" && (
                   <>
@@ -74,6 +112,13 @@ export const TransactionTable = () => {
           </tr>
         </tbody>
       </Table>
+      {idsToDelete.length > 0 && (
+        <div className="d-grid">
+          <Button variant="danger">
+            Delete {idsToDelete.length} Transactions
+          </Button>
+        </div>
+      )}
     </>
   );
 };
