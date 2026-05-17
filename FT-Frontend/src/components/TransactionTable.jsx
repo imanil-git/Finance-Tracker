@@ -7,7 +7,7 @@ import { FaCirclePlus } from "react-icons/fa6";
 
 export const TransactionTable = () => {
   const [displayTran, setDisplayTran] = useState([]);
-  const { transactions } = useUser();
+  const { transactions, toogleModal } = useUser();
   useEffect(() => {
     setDisplayTran(transactions);
   }, [transactions]);
@@ -26,13 +26,13 @@ export const TransactionTable = () => {
   }, 0);
   return (
     <>
+      <p className="fs-4 fw-bold">{displayTran.length} transaction(s) found!</p>
       <div className="d-flex justify-content-between pt-3 mb-4">
-        <div>{displayTran.length} transaction(s) found!</div>
         <div>
-          <Form.Control onChange={handleOnSearch} />
+          <Form.Control className="rounded-pill" onChange={handleOnSearch} />
         </div>
-        <div>
-          <Button>
+        <div className="text-center">
+          <Button className="rounded-pill" onClick={() => toogleModal(true)}>
             <FaCirclePlus /> Add New Transactions
           </Button>
         </div>

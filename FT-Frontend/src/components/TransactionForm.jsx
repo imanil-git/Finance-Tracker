@@ -16,7 +16,7 @@ const initialState = {
 
 export const TransactionForm = () => {
   const { form, setForm, handleOnChange } = useForm(initialState);
-  const { getTransactions } = useUser();
+  const { getTransactions, toogleModal } = useUser();
 
   const handleOnSubmit = async (e) => {
     e.preventDefault();
@@ -29,9 +29,12 @@ export const TransactionForm = () => {
     toast[status](message);
     if (status === "success") {
       setForm(initialState);
+      //TODO: call the function to fetch all transcation
       getTransactions();
+
+      // Close modal after Insertation
+      toogleModal(false);
     }
-    //TODO: call the function to fetch all transcation
   };
 
   const fields = [
@@ -61,7 +64,6 @@ export const TransactionForm = () => {
   ];
   return (
     <div className="border rounded p-4">
-      <h4 className="mb-5 text-center">Sign up now!</h4>
       <Form onSubmit={handleOnSubmit}>
         <Form.Group className="mb-3">
           <Form.Label>Transaction Type</Form.Label>
