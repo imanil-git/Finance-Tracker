@@ -79,3 +79,16 @@ export const fetchTransaction = () => {
   };
   return apiProcessor(obj);
 };
+
+// Deleting Transaction
+export const deleteTransactions = (data) => {
+  const obj = {
+    method: "delete",
+    url: RootApiEp + "/transactions",
+    data,
+    headers: {
+      Authorization: getAccessJWT(),
+    },
+  };
+  return apiProcessor(obj);
+};

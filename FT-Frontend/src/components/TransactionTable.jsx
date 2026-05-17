@@ -4,10 +4,12 @@ import { useUser } from "../context/UserContext";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { FaCirclePlus } from "react-icons/fa6";
+import { deleteTransactions } from "../../helpers/axiosHelper";
+import { toast } from "react-toastify";
 
 export const TransactionTable = () => {
   const [displayTran, setDisplayTran] = useState([]);
-  const { transactions, toogleModal } = useUser();
+  const { transactions, toogleModal, getTransactions } = useUser();
   const [idsToDelete, setIdsToDelete] = useState([]);
 
   useEffect(() => {
@@ -30,7 +32,6 @@ export const TransactionTable = () => {
 
   const handleOnSelect = (e) => {
     const { checked, value } = e.target;
-    console.log(checked, value);
     if (value === "all") {
       checked
         ? setIdsToDelete(displayTran.map((item) => item._id))
@@ -46,7 +47,23 @@ export const TransactionTable = () => {
     }
     return;
   };
-  console.log(idsToDelete);
+
+  const handleOnDelete = async () => {
+    if (
+      confirm(
+        `Are you sure you want to delete ${idsToDelete.length} transactions`,
+      )
+    ) {
+      const pending = deleteTransactions(idsToDelete);
+      toast.promise(pending, {
+        pending: "Please Wait...",
+      });
+
+      const { status, message } = await pending;
+      toast[status](message);
+      status === "success" && getTransactions() && setIdsToDelete([]);
+    }
+  };
   return (
     <>
       <p className="fs-4 fw-bold">{displayTran.length} transaction(s) found!</p>
@@ -114,7 +131,7 @@ export const TransactionTable = () => {
       </Table>
       {idsToDelete.length > 0 && (
         <div className="d-grid">
-          <Button variant="danger">
+          <Button onClick={handleOnDelete} variant="danger">
             Delete {idsToDelete.length} Transactions
           </Button>
         </div>
