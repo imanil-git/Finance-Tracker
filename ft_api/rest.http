@@ -29,7 +29,7 @@ Content-Type: application/json
 ### Post new transaction
 POST http://localhost:8000/api/v1/transactions
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFAcy5jb20iLCJpYXQiOjE3NzkwMDMwMzMsImV4cCI6MTc3OTA4OTQzM30.fSza89TuU5LUlPvIViGRPpUw1ST248AFILf1R771IhU
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFAcy5jb20iLCJpYXQiOjE3NzkyNjY4ODMsImV4cCI6MTc3OTM1MzI4M30.o7Hm4mM_Oay8XJo_lahOPVRpK_DQ6PWd3wEwxSqO3ts
 
 {
     "type": "income",
@@ -41,6 +41,20 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFAcy5jb20iLCJp
 ### Post new transaction
 GET http://localhost:8000/api/v1/transactions
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFAcy5jb20iLCJpYXQiOjE3NzkwMDMwMzMsImV4cCI6MTc3OTA4OTQzM30.fSza89TuU5LUlPvIViGRPpUw1ST248AFILf1R771IhU
+
+### Update by id new transaction
+PATCH  http://localhost:8000/api/v1/transactions/6a09a248d21f155d427e44a0
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFAcy5jb20iLCJpYXQiOjE3NzkyNjY4ODMsImV4cCI6MTc3OTM1MzI4M30.o7Hm4mM_Oay8XJo_lahOPVRpK_DQ6PWd3wEwxSqO3ts
+
+{
+       
+"type": "expenses",
+"title": "Check",
+"amount": "222222",
+"tDate": "2026-05-06"
+
+}
 
 ### Delete transaction
 DELETE http://localhost:8000/api/v1/transactions
