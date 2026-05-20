@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Table from "react-bootstrap/Table";
 import { useUser } from "../context/UserContext";
 import Form from "react-bootstrap/Form";
@@ -69,7 +69,7 @@ export const TransactionTable = () => {
       <p className="fs-4 fw-bold">{displayTran.length} transaction(s) found!</p>
       <div className="d-flex justify-content-between pt-3 mb-4">
         <div>
-          <Form.Control className="rounded-pill" onChange={handleOnSearch} />
+          <Form.Control className="rounded-pill" placeholder="Search transactions..." onChange={handleOnSearch} />
         </div>
         <div className="text-center">
           <Button className="rounded-pill" onClick={() => toogleModal(true)}>

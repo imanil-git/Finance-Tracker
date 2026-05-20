@@ -1,4 +1,3 @@
-import React from "react";
 import useForm from "../hooks/useForm";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
@@ -20,7 +19,6 @@ export const TransactionForm = () => {
 
   const handleOnSubmit = async (e) => {
     e.preventDefault();
-    console.log(form);
     const pending = NewPostTransaction(form);
     toast.promise(pending, {
       pending: "Please Wait...",

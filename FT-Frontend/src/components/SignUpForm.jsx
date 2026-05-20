@@ -1,7 +1,6 @@
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { CustomInput } from "./CustomInput";
-// import { useState } from "react";
 import { toast } from "react-toastify";
 import { NewPostUser } from "../../helpers/axiosHelper";
 import useForm from "../hooks/useForm";
@@ -14,7 +13,6 @@ const initialState = {
 };
 
 export const SignUpForm = () => {
-  // const [form, setForm] = useState({});
   const { form, setForm, handleOnChange } = useForm(initialState);
   const fields = [
     {
@@ -51,14 +49,6 @@ export const SignUpForm = () => {
     },
   ];
 
-  // const handleOnChange = (e) => {
-  //   const { name, value } = e.target;
-  //   // console.log(name, value);
-  //   setForm({
-  //     ...form,
-  //     [name]: value,
-  //   });
-  // };
 
   const handleOnSubmit = async (e) => {
     e.preventDefault();
@@ -66,7 +56,11 @@ export const SignUpForm = () => {
     if (confirmPassword !== input.password) {
       return toast.error("Password didn't match");
     }
-    const { status, message } = await NewPostUser(input);
+    const pending = NewPostUser(input);
+    toast.promise(pending, {
+      pending: "Please Wait...",
+    });
+    const { status, message } = await pending;
     toast[status](message);
 
     status === "success" && setForm(initialState);

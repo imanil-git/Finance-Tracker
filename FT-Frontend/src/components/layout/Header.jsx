@@ -8,30 +8,40 @@ import { IoCreate } from "react-icons/io5";
 import { RiDashboard3Fill } from "react-icons/ri";
 import { TbTransactionDollar } from "react-icons/tb";
 import { useUser } from "../../context/UserContext";
+import { useState } from "react";
 
 export const Header = () => {
   const { user, setUser } = useUser();
+  const [showMenu, setShowMenu] = useState(false);
   const handleOnLogOut = () => {
     //1. On Logout click delete `accessJWT` token from the `localStorage`
     localStorage.removeItem("accessJWT");
     //2. Reset user object from the this.state
     setUser({});
+    setShowMenu(false)
   };
 
   return (
-    <Navbar expand="lg" variant="dark" className="bg-body-dark">
+    <Navbar
+      expand="lg"
+      variant="dark"
+      className="bg-body-dark"
+      expanded={showMenu}
+    >
       <Container>
         <Navbar.Brand href="#home">Financial Tracker</Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <div>Welcome {user?.name}</div>
+
+        <Navbar.Toggle aria-controls="basic-navbar-nav" onClick={() => setShowMenu(!showMenu)} />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
             {user?._id ? (
               <>
-                <Link className="nav-link" to="/dashboard">
+                <Link onClick={()=>setShowMenu(false)} className="nav-link" to="/dashboard">
                   <RiDashboard3Fill />
                   Dashboard
                 </Link>
-                <Link className="nav-link" to="/transaction">
+                <Link onClick={()=>setShowMenu(false)} className="nav-link" to="/transaction">
                   <TbTransactionDollar />
                   Transaction
                 </Link>
@@ -42,11 +52,11 @@ export const Header = () => {
               </>
             ) : (
               <>
-                <Link className="nav-link" to="/signup">
+                <Link onClick={()=>setShowMenu(false)} className="nav-link" to="/signup">
                   <IoCreate />
                   Sign UP
                 </Link>
-                <Link className="nav-link" to="/">
+                <Link onClick={()=>setShowMenu(false)} className="nav-link" to="/">
                   <GrLogin />
                   Login
                 </Link>

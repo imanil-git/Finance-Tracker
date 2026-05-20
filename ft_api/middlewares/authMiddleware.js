@@ -6,7 +6,6 @@ export const auth = async (req, res, next) => {
     const { authorization } = req.headers;
 
     const result = verifyJWT(authorization);
-    console.log(result);
 
     // - validate if the token is validate
     if (result?.email) {

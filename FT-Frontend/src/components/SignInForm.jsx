@@ -15,7 +15,6 @@ const initialState = {
 
 export const SignInForm = () => {
   const location = useLocation();
-  console.log(location);
   const navigate = useNavigate();
 
   const { user, setUser } = useUser();
@@ -44,19 +43,8 @@ export const SignInForm = () => {
     },
   ];
 
-  //   const handleOnChange = (e) => {
-  //     const { name, value } = e.target;
-  //     // console.log(name, value);
-  //     setForm({
-  //       ...form,
-  //       [name]: value,
-  //     });
-  //   };
-
   const handleOnSubmit = async (e) => {
     e.preventDefault();
-
-    console.log(form);
 
     const pendingResp = loginUser(form);
     toast.promise(pendingResp, {
@@ -66,7 +54,6 @@ export const SignInForm = () => {
     const { status, message, user, accessJWT } = await pendingResp;
 
     toast[status](message);
-    console.log(user, accessJWT);
     setUser(user);
     localStorage.setItem("accessJWT", accessJWT);
   };
