@@ -13,6 +13,19 @@ export const getTransaction = (userId) => {
   return TransactionSchema.find({ userId });
 };
 
+// Update
+export const updateTransaction = (id, userId, obj) => {
+  return TransactionSchema.updateOne(
+    {
+      _id: id,
+      userId,
+    },
+    {
+      $set: obj,
+    },
+  );
+};
+
 // delete
 export const deleteTransactions = (userId, idsToDelete) => {
   return TransactionSchema.deleteMany({ userId, _id: { $in: idsToDelete } });

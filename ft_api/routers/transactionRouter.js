@@ -3,6 +3,7 @@ import {
   deleteTransactions,
   getTransaction,
   insertTransaction,
+  updateTransaction,
 } from "../models/transaction/TransactionModel.js";
 const router = express.Router();
 
@@ -37,6 +38,32 @@ router.get("/", async (req, res, next) => {
       message: "You get your transcations",
       transactions,
     });
+  } catch (error) {
+    next(error);
+  }
+});
+
+// Update Transaction
+router.patch("/:id", async (req, res, next) => {
+  try {
+    console.log(req.params.id);
+    console.log(req.body);
+    const { id } = req.params;
+
+    const { _id } = req.userInfo;
+
+    // update transaction
+    const result = await updateTransaction(id, _id, req.body);
+    console.log("Result = ", result);
+    result?.modifiedCount
+      ? res.json({
+          status: "success",
+          message: "Transaction updated successfully",
+        })
+      : res.json({
+          status: "error",
+          message: "Unable to update successfully",
+        });
   } catch (error) {
     next(error);
   }
