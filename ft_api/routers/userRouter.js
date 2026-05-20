@@ -6,11 +6,10 @@ import { auth } from "../middlewares/authMiddleware.js";
 const router = express.Router();
 
 // User sign up
-router.post("/", async (req, res) => {
+router.post("/", async (req, res, next) => {
   try {
     // password encryption
     req.body.password = hashPassword(req.body.password);
-    console.log(req.body.password);
     // insert the user
     const user = await insertUser(req.body);
     user?._id
@@ -18,20 +17,18 @@ router.post("/", async (req, res) => {
           status: "success",
           message: "User created successfully, Please Login now",
         })
-      : es.json({
+      : res.json({
           status: "error",
           message: "Please try again",
         });
   } catch (error) {
-    let msg = error.message;
-    if (msg.includes("E11000 duplicate key error collection")) {
-      msg =
+    if (error.message.includes("E11000 duplicate key error collection")) {
+      error.message =
         "Another user have used this email, try to login or use different email to signup";
     }
-    res.json({
-      status: "error",
-      message: msg,
-    });
+
+    error.statusCode = 200;
+    next(error);
   }
 });
 
@@ -68,9 +65,7 @@ router.post("/login", async (req, res, next) => {
       error: "Invalid email or password",
     });
   } catch (error) {
-    res.status(500).json({
-      error: error.message,
-    });
+    next(error);
   }
 });
 
@@ -85,9 +80,7 @@ router.get("/", auth, (req, res, next) => {
       user,
     });
   } catch (error) {
-    res.status(500).json({
-      error: error.message,
-    });
+    next(error);
   }
 });
 

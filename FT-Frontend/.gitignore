@@ -42,3 +42,6 @@ dist-ssr
 
 # PnP files (optional, but usually ignored)
 .pnp.*
+
+# Environment
+.env
