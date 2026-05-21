@@ -1,7 +1,15 @@
 import { Container, Row, Col } from "react-bootstrap";
 import { DashboardChart } from "../components/DashboardChart";
+import { useUser } from "../context/UserContext";
+import { useEffect } from "react";
 
 const Dashboard = () => {
+  const { transactions, getTransactions } = useUser();
+
+  useEffect(() => {
+    getTransactions();
+  }, []);
+
   return (
     <Container className="p-5">
       <Row className="bg-dark p-5 rounded gap-2">
