@@ -4,7 +4,13 @@ import Modal from "react-bootstrap/Modal";
 import { useUser } from "../context/UserContext";
 
 export const CustomModal = ({ children }) => {
-  const { show, toogleModal } = useUser();
+  const { show, toogleModal, selectedTransaction, setSelectedTransaction } =
+    useUser();
+
+  const handleClose = () => {
+    toogleModal(false);
+    setSelectedTransaction(null);
+  };
 
   return (
     <>
@@ -16,7 +22,9 @@ export const CustomModal = ({ children }) => {
         centered
       >
         <Modal.Header closeButton>
-          <Modal.Title>Add New Transaction</Modal.Title>
+          <Modal.Title>
+            {selectedTransaction ? "Edit Transaction" : "Add New Transaction"}
+          </Modal.Title>
         </Modal.Header>
         <Modal.Body>{children}</Modal.Body>
       </Modal>
