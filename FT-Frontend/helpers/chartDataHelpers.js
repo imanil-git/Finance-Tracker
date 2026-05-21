@@ -63,7 +63,7 @@ export const formatChartData = (transactionData) => {
 
   let tempChardData = {
     balance: {
-      amount: income.amount + expense.amount,
+      amount: income.amount - expense.amount,
       chartData: {
         labels: ["Income", "Expense"],
         datasets: [

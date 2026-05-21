@@ -20,6 +20,7 @@ export const DashboardChart = () => {
 
     setDashboardData(formatChartData(transactions.slice(-1 * recordsToShow)));
   }, [transactions]);
+
   return (
     <>
       <Row>
@@ -50,30 +51,38 @@ export const DashboardChart = () => {
               />
             </Col>
           </Row>
-          <Row className="mt-2">
-            <Col
-              md={4}
-              className="bg-dark p-2 d-flex align-items-center justify-content-center"
-            >
-              <DoughnutChart data={dashboardData.balance.chartData} />
+          <Row className="mt-2 g-3">
+            <Col xs={12} md={4}>
+              <div
+                className="bg-dark p-3 rounded shadow"
+                style={{ height: "300px" }}
+              >
+                <DoughnutChart data={dashboardData.balance.chartData} />
+              </div>
             </Col>
-            <Col
-              md={4}
-              className="bg-dark p-2 d-flex align-items-center justify-content-center"
-            >
-              <LineChart
-                data={dashboardData.income.lineData}
-                options={dashboardData.income.options}
-              />
+
+            <Col xs={12} md={4}>
+              <div
+                className="bg-dark p-3 rounded shadow"
+                style={{ height: "300px" }}
+              >
+                <LineChart
+                  data={dashboardData.income.lineData}
+                  options={dashboardData.income.options}
+                />
+              </div>
             </Col>
-            <Col
-              md={4}
-              className="bg-dark p-2 d-flex align-items-center justify-content-center"
-            >
-              <LineChart
-                data={dashboardData.expense.lineData}
-                options={dashboardData.expense.options}
-              />
+
+            <Col xs={12} md={4}>
+              <div
+                className="bg-dark p-3 rounded shadow"
+                style={{ height: "300px" }}
+              >
+                <LineChart
+                  data={dashboardData.expense.lineData}
+                  options={dashboardData.expense.options}
+                />
+              </div>
             </Col>
           </Row>
           <Row>
