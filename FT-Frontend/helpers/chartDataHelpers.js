@@ -1,4 +1,4 @@
-// Functions to aggregate data by type (income/expenses)
+// Function to aggregate data by type (income/expenses)
 const aggregateData = (transactions) => {
   const result = { income: {}, expenses: {} };
 
@@ -10,17 +10,18 @@ const aggregateData = (transactions) => {
       result.expenses[date] = (result.expenses[date] || 0) + transaction.amount;
     }
   });
+
   return result;
 };
 
-//Prepare data for the chart
+// Prepare data for the chart
 const prepareChartData = (aggregatedData) => {
   const labels = Object.keys(aggregatedData.income)
     .concat(Object.keys(aggregatedData.expenses))
-    .filter((value, index, self) => aggregatedData.income[label] || 0);
+    .filter((value, index, self) => self.indexOf(value) === index);
   const incomeData = labels.map((label) => aggregatedData.income[label] || 0);
   const expensesData = labels.map(
-    (label) => aggregatedData.expenses[label] || 0,
+    (label) => aggregatedData.expenses[label] || 0
   );
 
   return { labels, incomeData, expensesData };
@@ -60,11 +61,11 @@ export const formatChartData = (transactionData) => {
   const aggregatedData = aggregateData(transactionData);
   const combinedData = prepareChartData(aggregatedData);
 
-  let tempChartData = {
+  let tempChardData = {
     balance: {
       amount: income.amount + expense.amount,
       chartData: {
-        labels: ["Income", "Expenses"],
+        labels: ["Income", "Expense"],
         datasets: [
           {
             label: "Amount",
@@ -99,7 +100,7 @@ export const formatChartData = (transactionData) => {
           x: {
             ticks: {
               maxRotation: 180, // Maximum rotation for X-axis labels
-              minRotation: 20, //Minimum rotation for X-axis labels
+              minRotation: 20, // Minimum rotation for X-axis labels
             },
           },
         },
@@ -181,5 +182,6 @@ export const formatChartData = (transactionData) => {
       },
     },
   };
-  return tempChartData;
+
+  return tempChardData;
 };

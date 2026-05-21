@@ -7,6 +7,8 @@ import balanceIcon from "../assets/balance.png";
 import expenseIcon from "../assets/expense.png";
 import incomeIcon from "../assets/income.png";
 import DoughnutChart from "./chart/DoughnutChart";
+import LineChart from "./chart/LineChart";
+import BarChart from "./chart/BarChart";
 
 export const DashboardChart = () => {
   const { transactions, getTransactions } = useUser();
@@ -58,14 +60,29 @@ export const DashboardChart = () => {
             <Col
               md={4}
               className="bg-dark p-2 d-flex align-items-center justify-content-center"
-            ></Col>
+            >
+              <LineChart
+                data={dashboardData.income.lineData}
+                options={dashboardData.income.options}
+              />
+            </Col>
             <Col
               md={4}
               className="bg-dark p-2 d-flex align-items-center justify-content-center"
-            ></Col>
+            >
+              <LineChart
+                data={dashboardData.expense.lineData}
+                options={dashboardData.expense.options}
+              />
+            </Col>
           </Row>
           <Row>
-            <Col></Col>
+            <Col className="bg-dark rounded p-4">
+              <BarChart
+                data={dashboardData.combined.data}
+                options={dashboardData.combined.options}
+              />
+            </Col>
           </Row>
         </Col>
       </Row>

@@ -9,7 +9,7 @@ export const CustomKPI = ({
 }) => {
   return (
     <>
-      <Row>
+      <Row className={"bg-" + bgColor + " rounded text-black p-3 g-2"}>
         <Col md={4}>
           <img className="img-fluid" src={iconSrc} alt={kpiType} />
         </Col>
