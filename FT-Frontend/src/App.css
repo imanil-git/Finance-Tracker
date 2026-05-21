@@ -22,3 +22,12 @@ th {
 .out {
   color: red !important;
 }
+
+.customChart {
+  background-color: white;
+  padding: 20px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
