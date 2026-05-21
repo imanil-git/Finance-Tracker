@@ -7,6 +7,7 @@ export const UseProvider = ({ children }) => {
   const [user, setUser] = useState({});
   const [transactions, setTransactions] = useState([]);
   const [show, setShow] = useState(false);
+  const [selectedTransaction, setSelectedTransaction] = useState(null);
 
   const toogleModal = (value) => setShow(value);
 
@@ -27,6 +28,8 @@ export const UseProvider = ({ children }) => {
         getTransactions,
         toogleModal,
         show,
+        selectedTransaction,
+        setSelectedTransaction,
       }}
     >
       {children}

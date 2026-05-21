@@ -2,9 +2,13 @@ import useForm from "../hooks/useForm";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { CustomInput } from "./CustomInput";
-import { NewPostTransaction } from "../../helpers/axiosHelper";
+import {
+  NewPostTransaction,
+  updateTransaction,
+} from "../../helpers/axiosHelper";
 import { toast } from "react-toastify";
 import { useUser } from "../context/UserContext";
+import { useEffect } from "react";
 
 const initialState = {
   type: "",
@@ -15,11 +19,37 @@ const initialState = {
 
 export const TransactionForm = () => {
   const { form, setForm, handleOnChange } = useForm(initialState);
-  const { getTransactions, toogleModal } = useUser();
+  const {
+    getTransactions,
+    toogleModal,
+    selectedTransaction,
+    setSelectedTransaction,
+  } = useUser();
+
+  useEffect(() => {
+    if (selectedTransaction) {
+      setForm({
+        type: selectedTransaction.type || "",
+        title: selectedTransaction.title || "",
+        amount: selectedTransaction.amount || "",
+        tDate: selectedTransaction.tDate?.slice(0, 10) || "",
+      });
+    } else {
+      setForm(initialState);
+    }
+  }, [selectedTransaction]);
 
   const handleOnSubmit = async (e) => {
     e.preventDefault();
-    const pending = NewPostTransaction(form);
+
+    let pending;
+
+    if (selectedTransaction?._id) {
+      pending = updateTransaction(selectedTransaction._id, form);
+      console.log(pending);
+    } else {
+      pending = NewPostTransaction(form);
+    }
     toast.promise(pending, {
       pending: "Please Wait...",
     });
@@ -32,6 +62,8 @@ export const TransactionForm = () => {
 
       // Close modal after Insertation
       toogleModal(false);
+
+      setSelectedTransaction(null);
     }
   };
 
@@ -76,7 +108,7 @@ export const TransactionForm = () => {
         ))}
         <div className="d-grid mt-4">
           <Button variant="primary" type="submit">
-            Submit
+            {selectedTransaction ? "Update Transaction" : "Add Transaction"}
           </Button>
         </div>
       </Form>

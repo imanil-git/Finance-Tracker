@@ -4,12 +4,13 @@ import { useUser } from "../context/UserContext";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { FaCirclePlus } from "react-icons/fa6";
+import { MdEditSquare } from "react-icons/md";
 import { deleteTransactions } from "../../helpers/axiosHelper";
 import { toast } from "react-toastify";
 
 export const TransactionTable = () => {
   const [displayTran, setDisplayTran] = useState([]);
-  const { transactions, toogleModal, getTransactions } = useUser();
+  const { transactions, toogleModal, getTransactions, setSelectedTransaction } = useUser();
   const [idsToDelete, setIdsToDelete] = useState([]);
 
   useEffect(() => {
@@ -69,7 +70,11 @@ export const TransactionTable = () => {
       <p className="fs-4 fw-bold">{displayTran.length} transaction(s) found!</p>
       <div className="d-flex justify-content-between pt-3 mb-4">
         <div>
-          <Form.Control className="rounded-pill" placeholder="Search transactions..." onChange={handleOnSearch} />
+          <Form.Control
+            className="rounded-pill"
+            placeholder="Search transactions..."
+            onChange={handleOnSearch}
+          />
         </div>
         <div className="text-center">
           <Button className="rounded-pill" onClick={() => toogleModal(true)}>
@@ -93,6 +98,7 @@ export const TransactionTable = () => {
             <th>Titile</th>
             <th>Out</th>
             <th>In</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -121,11 +127,17 @@ export const TransactionTable = () => {
                     <td className="in">${t.amount}</td>
                   </>
                 )}
+                <td>
+                  <MdEditSquare style={{cursor: "pointer"}} onClick={() => {
+                    setSelectedTransaction(t);
+                    toogleModal(true);
+                  }} />
+                </td>
               </tr>
             ))}
           <tr className="fw-bold text-center">
             <td colSpan={2}>Total</td>
-            <td colSpan={3}>${balance}</td>
+            <td colSpan={4}>${balance}</td>
           </tr>
         </tbody>
       </Table>

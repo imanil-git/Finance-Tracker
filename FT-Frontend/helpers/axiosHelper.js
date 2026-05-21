@@ -79,6 +79,19 @@ export const fetchTransaction = () => {
   return apiProcessor(obj);
 };
 
+// Updating Transaction
+export const updateTransaction = (id, data) => {
+  const obj = {
+    method: "patch",
+    url: RootApiEp + "/transactions/" + id,
+    data,
+    headers: {
+      Authorization: getAccessJWT(),
+    },
+  };
+  return apiProcessor(obj);
+};
+
 // Deleting Transaction
 export const deleteTransactions = (data) => {
   const obj = {
