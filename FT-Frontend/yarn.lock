@@ -425,6 +425,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@kurkle/color@npm:^0.3.0":
+  version: 0.3.4
+  resolution: "@kurkle/color@npm:0.3.4"
+  checksum: 10c0/0e9fd55c614b005c5f0c4c755bca19ec0293bc7513b4ea3ec1725234f9c2fa81afbc78156baf555c8b9cb0d305619253c3f5bca016067daeebb3d00ebb4ea683
+  languageName: node
+  linkType: hard
+
 "@napi-rs/wasm-runtime@npm:^1.1.1":
   version: 1.1.1
   resolution: "@napi-rs/wasm-runtime@npm:1.1.1"
@@ -980,6 +987,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"chart.js@npm:^4.5.1":
+  version: 4.5.1
+  resolution: "chart.js@npm:4.5.1"
+  dependencies:
+    "@kurkle/color": "npm:^0.3.0"
+  checksum: 10c0/3f2a11dcaae9079e8e6b8ad077e2ae311f04996f9da14815730891e66215ee8b5f2c0eb70b5a156e5bde0f89a41bae13506dc6153e50fd22dcb282b21eec706f
+  languageName: node
+  linkType: hard
+
 "chownr@npm:^3.0.0":
   version: 3.0.0
   resolution: "chownr@npm:3.0.0"
@@ -1466,12 +1482,15 @@ __metadata:
     "@vitejs/plugin-react": "npm:^5.1.1"
     axios: "npm:^1.13.6"
     bootstrap: "npm:^5.3.8"
+    chart.js: "npm:^4.5.1"
     eslint: "npm:^9.39.1"
     eslint-plugin-react-hooks: "npm:^7.0.1"
     eslint-plugin-react-refresh: "npm:^0.4.24"
     globals: "npm:^16.5.0"
     react: "npm:^19.2.0"
     react-bootstrap: "npm:^2.10.10"
+    react-chart: "npm:^0.0.1"
+    react-chartjs-2: "npm:^5.3.1"
     react-dom: "npm:^19.2.0"
     react-icons: "npm:^5.6.0"
     react-router-dom: "npm:^7.13.1"
@@ -2177,6 +2196,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"numeral@npm:^1.5.3":
+  version: 1.5.6
+  resolution: "numeral@npm:1.5.6"
+  checksum: 10c0/ec71ab2108339193af5809f152f86608b3122269db39ae14e6f5bca57b870500d168775312bff43e4dc0a1797ddec29bc6d5033c5bff4ac5843eefdafb91073a
+  languageName: node
+  linkType: hard
+
 "object-assign@npm:^4.1.1":
   version: 4.1.1
   resolution: "object-assign@npm:4.1.1"
@@ -2332,6 +2358,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"randgen@npm:^0.1.0":
+  version: 0.1.0
+  resolution: "randgen@npm:0.1.0"
+  checksum: 10c0/56c5feadec315ff1b7ea5baa2f0b3dbe5eac5d5fb196c792d0e03ad60018a851fb94afd1736387615d6eb622af0fc521f7156852a71cf6eb18bac71ababac4fb
+  languageName: node
+  linkType: hard
+
 "react-bootstrap@npm:^2.10.10":
   version: 2.10.10
   resolution: "react-bootstrap@npm:2.10.10"
@@ -2357,6 +2390,27 @@ __metadata:
     "@types/react":
       optional: true
   checksum: 10c0/7d515ca782398a267809f0e62b8cb9b94a9c5190c7cdeb974d54365ac445c3280872258722a95ee753f2e124c0354a875e167c17dcb93138cf16c633681925d6
+  languageName: node
+  linkType: hard
+
+"react-chart@npm:^0.0.1":
+  version: 0.0.1
+  resolution: "react-chart@npm:0.0.1"
+  dependencies:
+    numeral: "npm:^1.5.3"
+    randgen: "npm:^0.1.0"
+    react: "npm:~0.10.0"
+  checksum: 10c0/a25ef426a7482f5ee27ad508ffc7b9b00b60d202cc61bc9b7b521637e991abe550213bd457cf7a2a3d1aacf3613e5470ddca7a803852c75356fe3b03b5413189
+  languageName: node
+  linkType: hard
+
+"react-chartjs-2@npm:^5.3.1":
+  version: 5.3.1
+  resolution: "react-chartjs-2@npm:5.3.1"
+  peerDependencies:
+    chart.js: ^4.1.1
+    react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+  checksum: 10c0/40fac3fe23a163232d952bf5cd2a14d7baceadea326b57909d5e556ed2481b7cfb177582ac8f39b8dc51ac11f3d19a6127784746f35f5771181ab700110e7326
   languageName: node
   linkType: hard
 
@@ -2460,6 +2514,15 @@ __metadata:
   version: 19.2.4
   resolution: "react@npm:19.2.4"
   checksum: 10c0/cd2c9ff67a720799cc3b38a516009986f7fc4cb8d3e15716c6211cf098d1357ee3e348ab05ad0600042bbb0fd888530ba92e329198c92eafa0994f5213396596
+  languageName: node
+  linkType: hard
+
+"react@npm:~0.10.0":
+  version: 0.10.0
+  resolution: "react@npm:0.10.0"
+  peerDependencies:
+    envify: ~1.2.0
+  checksum: 10c0/b21758ebe3b7721ac33d160084a74c31b6a5562af0316073777af3844867d95465b490a0d6374f34162ac0e2bd35c9b9e3e05a10ec48e627a58217e7e3362b40
   languageName: node
   linkType: hard
 
