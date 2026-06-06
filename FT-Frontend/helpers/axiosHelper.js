@@ -104,3 +104,16 @@ export const deleteTransactions = (data) => {
   };
   return apiProcessor(obj);
 };
+
+// Callin AI
+export const askAI = (question) => {
+  const obj = {
+    method: "post",
+    url: RootApiEp + "/ai",
+    data: { question },
+    headers: {
+      Authorization: getAccessJWT(),
+    },
+  };
+  return apiProcessor(obj);
+};
