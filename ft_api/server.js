@@ -16,9 +16,11 @@ import userRouter from "./routers/userRouter.js";
 import transactionRouter from "./routers/transactionRouter.js";
 import { auth } from "./middlewares/authMiddleware.js";
 import { errorHandler } from "./middlewares/errorHandlerMiddleware.js";
+import aiRouter from "./routers/aiRouter.js";
 
 app.use("/api/v1/users", userRouter);
 app.use("/api/v1/transactions", auth, transactionRouter);
+app.use("/api/v1/ai", auth, aiRouter);
 
 app.get("/", (req, res) => {
   res.json({
@@ -34,7 +36,7 @@ app.use((req, res, next) => {
 });
 
 // Global error handler
-app.use(errorHandler)
+app.use(errorHandler);
 
 app.listen(PORT, (error) => {
   error

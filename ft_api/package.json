@@ -4,10 +4,13 @@
   "main": "server.js",
   "type": "module",
   "dependencies": {
+    "@langchain/groq": "^1.2.1",
     "bcryptjs": "^3.0.3",
     "cors": "^2.8.6",
     "express": "^5.2.1",
+    "groq-sdk": "^1.2.1",
     "jsonwebtoken": "^9.0.3",
+    "langchain": "^1.4.4",
     "mongoose": "^9.2.4"
   },
   "scripts": {

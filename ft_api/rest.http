@@ -62,3 +62,16 @@ Content-Type: application/json
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFAcy5jb20iLCJpYXQiOjE3NzkwMDMwMzMsImV4cCI6MTc3OTA4OTQzM30.fSza89TuU5LUlPvIViGRPpUw1ST248AFILf1R771IhU
 
 ["6a06bd2b8aa25bd718e0086d","6a06c4eb8aa25bd718e00871"]
+
+
+
+#### API-Testing
+
+### Post new transaction
+POST http://localhost:8000/api/v1/ai
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFAcy5jb20iLCJpYXQiOjE3ODA3MzA2NDgsImV4cCI6MTc4MDgxNzA0OH0.qDFDoI6-faMhOEgw0OMalQuJJYAVg6amJcxz2WNFZ_s
+
+{
+    "question": "How much did I spend this month?"
+}
