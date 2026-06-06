@@ -7,10 +7,13 @@ import { GrLogin } from "react-icons/gr";
 import { IoCreate } from "react-icons/io5";
 import { RiDashboard3Fill } from "react-icons/ri";
 import { TbTransactionDollar } from "react-icons/tb";
+import { MdDarkMode, MdLightMode } from "react-icons/md";
 import { useUser } from "../../context/UserContext";
 import { useState } from "react";
+import { useThemeStore } from "../../store/useThemeStore";
 
 export const Header = () => {
+  const { theme, toggleTheme } = useThemeStore();
   const { user, setUser } = useUser();
   const [showMenu, setShowMenu] = useState(false);
   const handleOnLogOut = () => {
@@ -18,30 +21,42 @@ export const Header = () => {
     localStorage.removeItem("accessJWT");
     //2. Reset user object from the this.state
     setUser({});
-    setShowMenu(false)
+    setShowMenu(false);
   };
 
   return (
     <Navbar
       expand="lg"
-      variant="dark"
-      className="bg-body-dark"
+      className={
+        theme === "dark" ? "navbar-dark bg-dark" : "navbar-light bg-light"
+      }
       expanded={showMenu}
     >
       <Container>
         <Navbar.Brand href="#home">Financial Tracker</Navbar.Brand>
         <div>Welcome {user?.name}</div>
 
-        <Navbar.Toggle aria-controls="basic-navbar-nav" onClick={() => setShowMenu(!showMenu)} />
+        <Navbar.Toggle
+          aria-controls="basic-navbar-nav"
+          onClick={() => setShowMenu(!showMenu)}
+        />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
             {user?._id ? (
               <>
-                <Link onClick={()=>setShowMenu(false)} className="nav-link" to="/dashboard">
+                <Link
+                  onClick={() => setShowMenu(false)}
+                  className="nav-link"
+                  to="/dashboard"
+                >
                   <RiDashboard3Fill />
                   Dashboard
                 </Link>
-                <Link onClick={()=>setShowMenu(false)} className="nav-link" to="/transaction">
+                <Link
+                  onClick={() => setShowMenu(false)}
+                  className="nav-link"
+                  to="/transaction"
+                >
                   <TbTransactionDollar />
                   Transaction
                 </Link>
@@ -49,14 +64,36 @@ export const Header = () => {
                   <IoMdLogOut />
                   Logout
                 </Link>
+                <div
+                  onClick={toggleTheme}
+                  style={{
+                    cursor: "pointer",
+                    fontSize: "22px",
+                    marginRight: "15px",
+                    display: "flex",
+                    alignItems: "center",
+                    color: theme === "dark" ? "white" : "black",
+                    transition: "0.3s",
+                  }}
+                >
+                  {theme === "dark" ? <MdLightMode /> : <MdDarkMode />}
+                </div>
               </>
             ) : (
               <>
-                <Link onClick={()=>setShowMenu(false)} className="nav-link" to="/signup">
+                <Link
+                  onClick={() => setShowMenu(false)}
+                  className="nav-link"
+                  to="/signup"
+                >
                   <IoCreate />
                   Sign UP
                 </Link>
-                <Link onClick={()=>setShowMenu(false)} className="nav-link" to="/">
+                <Link
+                  onClick={() => setShowMenu(false)}
+                  className="nav-link"
+                  to="/"
+                >
                   <GrLogin />
                   Login
                 </Link>

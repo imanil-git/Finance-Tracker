@@ -10,9 +10,16 @@ import { Auth } from "./auth/Auth.jsx";
 import { useEffect } from "react";
 import { useUser } from "./context/UserContext.jsx";
 import { autoLogin } from "./utils/users.js";
+import { useThemeStore } from "./store/useThemeStore.js";
 
 function App() {
+  const { theme } = useThemeStore();
   const { user, setUser } = useUser();
+
+  useEffect(() => {
+    document.body.className = theme;
+  }, [theme]);
+
   useEffect(() => {
     !user?._id && updateUser();
   }, [user?._id]);

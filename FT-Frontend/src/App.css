@@ -1,8 +1,12 @@
-.wrapper {
+/* .wrapper {
   min-height: 100vh;
   background: #000;
   color: rgb(223, 223, 223);
-}
+} */
+ .wrapper {
+  min-height: 100vh;
+  transition: all 0.3s ease;
+ }
 
 .main {
   min-height: calc(100vh - 150px);
@@ -12,7 +16,7 @@ tr,
 td,
 th {
   background: transparent !important;
-  color: white !important;
+  /* color: white !important; */
 }
 
 .in {
@@ -24,10 +28,77 @@ th {
 }
 
 .customChart {
+  /* background-color: white; */
+  padding: 20px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+/* =========================
+   DEFAULT DARK MODE
+========================= */
+
+body.dark .wrapper {
+  background: #000;
+  color: rgb(223, 223, 223);
+}
+
+body.dark .main {
+  min-height: calc(100vh - 150px);
+}
+
+body.dark .table,
+body.dark tr,
+body.dark td,
+body.dark th {
+  background: transparent !important;
+  color: white !important;
+}
+
+body.dark .in {
+  color: yellowgreen !important;
+}
+
+body.dark .out {
+  color: red !important;
+}
+
+body.dark .customChart {
   background-color: white;
   padding: 20px;
   border-radius: 20px;
   display: flex;
   align-items: center;
   height: 100%;
+}
+
+/* =========================
+   LIGHT MODE (ONLY CHANGES)
+========================= */
+
+body.light .wrapper {
+  background: #f5f5f5;
+  color: #111;
+}
+
+body.light .table,
+body.light tr,
+body.light td,
+body.light th {
+  background: transparent !important;
+  color: #111 !important;
+}
+
+body.light .customChart {
+  background-color: #ffffff;
+}
+
+body.light .in {
+  color: green !important;
+}
+
+body.light .out {
+  color: red !important;
 }
