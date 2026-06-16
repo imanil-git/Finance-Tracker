@@ -6,12 +6,12 @@ const model = new ChatGroq({
   model: "llama-3.1-8b-instant",
 });
 
-export const askFinanceAI = async (transcations, question) => {
+export const askFinanceAI = async (transactions, question) => {
   const prompt = PromptTemplate.fromTemplate(`
 You are a finance assistant.
 
-User transcations:
-{transcations}
+User transactions:
+{transactions}
 
 User question:
 {question}
@@ -22,7 +22,7 @@ Give a simple beginner friendly answer.
   const chain = prompt.pipe(model);
 
   const response = await chain.invoke({
-    transcations: JSON.stringify(transcations),
+    transactions: JSON.stringify(transactions),
     question,
   });
 

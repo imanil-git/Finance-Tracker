@@ -3,6 +3,8 @@ import { DashboardChart } from "../components/DashboardChart";
 import { useUser } from "../context/UserContext";
 import { useEffect } from "react";
 import { ChatBox } from "../components/ChatBox";
+import { ChatModal } from "../components/chat/ChatModal";
+import { ChatButton } from "../components/chat/ChatButton";
 
 const Dashboard = () => {
   const { transactions, getTransactions } = useUser();
@@ -23,7 +25,8 @@ const Dashboard = () => {
         </Row>
       </Container>
 
-      <ChatBox />
+      <ChatButton />
+      <ChatModal />
     </>
   );
 };
