@@ -6,11 +6,23 @@ export const insertTransaction = (obj) => {
 };
 
 // get
-export const getTransaction = (userId) => {
+export const getTransaction = (userId, page = 1, limit = 10) => {
   if (!userId) {
     throw new Error("userId is required");
   }
-  return TransactionSchema.find({ userId });
+
+  const skip = (page - 1) * limit;
+
+  return TransactionSchema.find({ userId })
+    .sort({ createdAt: -1 })
+    .skip(skip)
+    .limit(limit);
+};
+
+export const countTransactions = (userId) => {
+  return TransactionSchema.countDocuments({
+    userId,
+  });
 };
 
 // Update

@@ -1,5 +1,6 @@
 import express from "express";
 import {
+  countTransactions,
   deleteTransactions,
   getTransaction,
   insertTransaction,
@@ -32,11 +33,28 @@ router.get("/", async (req, res, next) => {
   try {
     // get user transactions
     const { _id } = req.userInfo;
-    const transactions = (await getTransaction(_id)) || [];
+
+    const page = Number(req.query.page) || 1;
+
+    const limit = Number(req.query.limit) || 10;
+
+    const transactions = (await getTransaction(_id, page, limit)) || [];
+
+    const totalTransactions = await countTransactions(_id);
+
+    const totalPages = Math.ceil(totalTransactions / limit);
     res.json({
       status: "success",
-      message: "You get your transcations",
+      message: "Transactions fetched",
+
       transactions,
+
+      pagination: {
+        currentPage: page,
+        limit,
+        totalPages,
+        totalTransactions,
+      },
     });
   } catch (error) {
     next(error);
