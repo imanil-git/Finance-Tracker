@@ -49,6 +49,8 @@ export const TransactionForm = () => {
       console.log(pending);
     } else {
       pending = NewPostTransaction(form);
+
+      console.log(form);
     }
     toast.promise(pending, {
       pending: "Please Wait...",

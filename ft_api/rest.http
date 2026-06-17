@@ -29,18 +29,18 @@ Content-Type: application/json
 ### Post new transaction
 POST http://localhost:8000/api/v1/transactions
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFAcy5jb20iLCJpYXQiOjE3NzkyNjY4ODMsImV4cCI6MTc3OTM1MzI4M30.o7Hm4mM_Oay8XJo_lahOPVRpK_DQ6PWd3wEwxSqO3ts
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFAcy5jb20iLCJpYXQiOjE3ODE2NjcwNTYsImV4cCI6MTc4MTc1MzQ1Nn0.OLPn7ORtt_G2u9j3l6ldgVaDi4HGj2vsHRRW9Oxf4cQ
 
 {
     "type": "income",
-  "title": "Salary",
+  "title": "For Pagination",
   "amount": "55",
-  "tDate": "2026-04-23"
+  "tDate": "2026-07-09"
 }
 
-### Post new transaction
-GET http://localhost:8000/api/v1/transactions
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFAcy5jb20iLCJpYXQiOjE3NzkwMDMwMzMsImV4cCI6MTc3OTA4OTQzM30.fSza89TuU5LUlPvIViGRPpUw1ST248AFILf1R771IhU
+### GET new transaction
+GET http://localhost:8000/api/v1/transactions?page=2&limit=10
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFAcy5jb20iLCJpYXQiOjE3ODE2NjcwNTYsImV4cCI6MTc4MTc1MzQ1Nn0.OLPn7ORtt_G2u9j3l6ldgVaDi4HGj2vsHRRW9Oxf4cQ
 
 ### Update by id new transaction
 PATCH  http://localhost:8000/api/v1/transactions/6a09a248d21f155d427e44a0

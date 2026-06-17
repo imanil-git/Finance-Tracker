@@ -4,11 +4,13 @@ import { TransactionForm } from "../components/TransactionForm";
 import { TransactionTable } from "../components/TransactionTable";
 import { useUser } from "../context/UserContext";
 import { CustomModal } from "../components/CustomModal";
+import { useTransactionStore } from "../store/useTransactionStore";
 
 const Transaction = () => {
-  const { getTransactions } = useUser();
+  const getTransactions = useTransactionStore((state) => state.getTransactions);
+
   useEffect(() => {
-    getTransactions();
+    getTransactions(1, 10);
   }, []);
   return (
     <Container className="p-5">
@@ -17,6 +19,7 @@ const Transaction = () => {
           <CustomModal>
             <TransactionForm />
           </CustomModal>
+
           <TransactionTable />
         </Col>
       </Row>
