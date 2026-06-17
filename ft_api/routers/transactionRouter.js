@@ -11,9 +11,13 @@ const router = express.Router();
 //insert transaction
 router.post("/", async (req, res, next) => {
   try {
+    console.log(req.body);
+
     const { _id } = req.userInfo;
     req.body.userId = _id;
     const result = await insertTransaction(req.body);
+
+    console.log(result);
     result?._id
       ? res.json({
           status: "success",

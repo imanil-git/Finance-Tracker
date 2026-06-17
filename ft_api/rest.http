@@ -29,13 +29,13 @@ Content-Type: application/json
 ### Post new transaction
 POST http://localhost:8000/api/v1/transactions
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFAcy5jb20iLCJpYXQiOjE3NzkyNjY4ODMsImV4cCI6MTc3OTM1MzI4M30.o7Hm4mM_Oay8XJo_lahOPVRpK_DQ6PWd3wEwxSqO3ts
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFAcy5jb20iLCJpYXQiOjE3ODE2NjcwNTYsImV4cCI6MTc4MTc1MzQ1Nn0.OLPn7ORtt_G2u9j3l6ldgVaDi4HGj2vsHRRW9Oxf4cQ
 
 {
     "type": "income",
-  "title": "Salary",
+  "title": "For Pagination",
   "amount": "55",
-  "tDate": "2026-04-23"
+  "tDate": "2026-07-09"
 }
 
 ### GET new transaction

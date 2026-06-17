@@ -14,7 +14,7 @@ export const getTransaction = (userId, page = 1, limit = 10) => {
   const skip = (page - 1) * limit;
 
   return TransactionSchema.find({ userId })
-    .sort({ createdAt: -1 })
+    .sort({ tDate: -1 })
     .skip(skip)
     .limit(limit);
 };

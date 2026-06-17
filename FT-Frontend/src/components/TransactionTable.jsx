@@ -7,11 +7,16 @@ import { FaCirclePlus } from "react-icons/fa6";
 import { MdEditSquare } from "react-icons/md";
 import { deleteTransactions } from "../../helpers/axiosHelper";
 import { toast } from "react-toastify";
+import PaginationControl from "./PaginationControl";
+import { useTransactionStore } from "../store/useTransactionStore";
 
 export const TransactionTable = () => {
   const [displayTran, setDisplayTran] = useState([]);
-  const { transactions, toogleModal, getTransactions, setSelectedTransaction } = useUser();
+  const { toogleModal } =
+    useUser();
   const [idsToDelete, setIdsToDelete] = useState([]);
+  const { transactions, getTransactions, pagination, setSelectedTransaction } =
+    useTransactionStore();
 
   useEffect(() => {
     setDisplayTran(transactions);
@@ -62,7 +67,7 @@ export const TransactionTable = () => {
 
       const { status, message } = await pending;
       toast[status](message);
-      status === "success" && getTransactions() && setIdsToDelete([]);
+      status === "success" && getTransactions(pagination.currentPage, pagination.limit) && setIdsToDelete([]);
     }
   };
   return (
@@ -108,7 +113,7 @@ export const TransactionTable = () => {
                 <td>{i + 1}</td>
                 <td>
                   <Form.Check
-                    label={t.createdAt.slice(0, 10)}
+                    label={t.tDate.slice(0, 10)}
                     value={t._id}
                     onChange={handleOnSelect}
                     checked={idsToDelete.includes(t._id)}
@@ -128,10 +133,13 @@ export const TransactionTable = () => {
                   </>
                 )}
                 <td>
-                  <MdEditSquare style={{cursor: "pointer"}} onClick={() => {
-                    setSelectedTransaction(t);
-                    toogleModal(true);
-                  }} />
+                  <MdEditSquare
+                    style={{ cursor: "pointer" }}
+                    onClick={() => {
+                      setSelectedTransaction(t);
+                      toogleModal(true);
+                    }}
+                  />
                 </td>
               </tr>
             ))}
@@ -141,6 +149,9 @@ export const TransactionTable = () => {
           </tr>
         </tbody>
       </Table>
+
+      <PaginationControl />
+
       {idsToDelete.length > 0 && (
         <div className="d-grid">
           <Button onClick={handleOnDelete} variant="danger">

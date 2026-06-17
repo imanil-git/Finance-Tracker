@@ -68,10 +68,10 @@ export const NewPostTransaction = (data) => {
 };
 
 // Getting Transaction
-export const fetchTransaction = () => {
+export const fetchTransaction = (page = 1, limit = 10) => {
   const obj = {
     method: "get",
-    url: RootApiEp + "/transactions",
+    url: RootApiEp + `/transactions?page=${page}&limit=${limit}`,
     headers: {
       Authorization: getAccessJWT(),
     },
